@@ -1,47 +1,20 @@
-'use client';
-import clsx from 'clsx';
-import {
-  UserGroupIcon,
-  HomeIcon,
-  DocumentDuplicateIcon,
-} from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import NavLinks from './nav-links';
+import AcmeLogo from '../acme-logo';
+import { PowerIcon } from '@heroicons/react/24/outline';
 
-
-// Map of links to display in the side navigation.
-// Depending on the size of the application, this would be stored in a database.
-const links = [
-  { name: 'Home', href: '/dashboard', icon: HomeIcon },
-  {
-    name: 'Invoices',
-    href: '/dashboard/invoices',
-    icon: DocumentDuplicateIcon,
-  },
-  { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
-];
-
-export default function NavLinks() {
-  const pathname = usePathname();
+export default function SideNav() {
   return (
-    <>
-      {links.map((link) => {
-        const LinkIcon = link.icon;
-        return (
-          <Link
-            key={link.name}
-            href={link.href}
-  className={clsx(
-              'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3',
-              {
-                'bg-sky-100 text-blue-600': pathname === link.href,
-              },
-            )}          >
-            <LinkIcon className="w-6" />
-            <p className="hidden md:block">{link.name}</p>
-          </Link>
-        );
-      })}
-    </>
+    <div className="w-64 h-screen bg-gray-50 border-r">
+      <div className="p-4 flex items-center justify-between">
+        <Link href="/"><AcmeLogo /></Link>
+      </div>
+      <nav className="mt-8"><NavLinks /></nav>
+      <div className="absolute bottom-4 w-full p-4">
+        <button className="flex items-center gap-2 text-red-500">
+          <PowerIcon className="w-5 h-5" /> Sign Out
+        </button>
+      </div>
+    </div>
   );
 }
