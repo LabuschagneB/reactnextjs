@@ -1,16 +1,15 @@
-import './globals.css';
-import Link from 'next/link';
-import AcmeLogo from './ui/acme-logo';
+import './globals.css'
+import { ReactNode } from 'react'
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const metadata = {
+  title: 'My Next.js App',
+  description: 'Built by Bryan',
+}
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <head />
-      <body className="text-white bg-[#020040]">
-        <main>
-        {children}
-      </main>
-      </body>
+      <body>{children}</body>
     </html>
-  );
+  )
 }
